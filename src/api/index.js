@@ -33,9 +33,12 @@ const apiMiddleware = ({
 
 
     // axios default configs
+
+    const userToken = accessToken ? localStorage.getItem('token') : '';
+
     axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "";
     axios.defaults.headers.common["Content-Type"] = "application/json";
-    axios.defaults.headers.common["Authorization"] = `Bearer${accessToken}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer${userToken}`;
 
 
     if (label) {

@@ -5,16 +5,17 @@ import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import store from './store/index';
+import './index.scss';
 
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import LoginComponent from './app/components/LoginComponent';
+import TicketsComponent from './app/components/Tickets';
 
 const routing = (
     <Router>
-      <div>
-        <Route path="/" exact component={App} />
-        <Route path="/login" component={LoginComponent} />
-      </div>
+      <Route path="/" exact component={App} />
+      <Route path="/login" component={LoginComponent} />
+      <Route path="/tickets" component={TicketsComponent} />
     </Router>
   )
 

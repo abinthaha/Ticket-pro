@@ -1,0 +1,39 @@
+@import './assets/scss/index.scss';
+
+$primary_hover: #082C65;
+$secondary_hover: #cbced2;
+
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    border-color: transparent;
+    transition: all 0.3s ease;
+
+    &:hover,
+    &:focus,
+    &:active {
+        box-shadow: 0px 0px 5px 1px $grey;
+    }
+
+    &.primary-btn {
+        background-color: $primary_color;
+        color: $white;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $primary_hover;
+        }
+    }
+
+    &.secondary-btn {
+        background-color: $secondary_bg_color;
+        color: $secondary_color;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $secondary_hover;
+        }
+    }
+}
