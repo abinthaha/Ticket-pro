@@ -7,18 +7,31 @@ import "./styles/styles.scss";
 class TicketsComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.props.history.push('/login');
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     console.log(nextProps);
   }
 
+  createTicket() {
+    this.props.history.push('/create-ticket');
+  }
+
   render() {
-    return <section className="tickets-wrapper">Tickets</section>;
+    return (
+      <section className="tickets-wrapper container">
+        <div>Tickets</div>
+        <button className='btn primary-btn' onClick={ev => this.createTicket()}>Add new</button>
+      </section>
+    );
   }
 }
 

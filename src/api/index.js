@@ -9,14 +9,16 @@ import {
 } from "./api";
 
 
-const BASE_URL = 'http://localhost:5000/api';
+const BASE_URL = 'http://localhost:3000';
 
 const apiMiddleware = ({
     dispatch
 }) => next => action => {
     next(action);
 
-    if (action.type !== API) return;
+    console.log(action);
+
+    if (!action || action.type !== API) return;
 
     const {
         url,
@@ -58,7 +60,7 @@ const apiMiddleware = ({
         })
         .catch(error => {
             dispatch(apiError(error));
-            dispatch(onFailure(error));
+            // dispatch(onFailure(error));ss
 
             if (error.response && error.response.status === 403) {
                 dispatch(accessDenied(window.location.pathname));

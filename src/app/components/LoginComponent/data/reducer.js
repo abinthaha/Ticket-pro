@@ -20,6 +20,11 @@ const loginReducer = (state = defaultState, action) => {
                 loginData: data
             }
 
+        case 'API_ERROR':
+            return {
+                ...state,
+                loginError: data
+            }
         default:
             return state;
     }

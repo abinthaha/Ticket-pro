@@ -2,14 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+import SnackBar from '../../common/Snackbar';
+
 import "./styles/styles.scss";
 
-import { getData } from "./data/action";
+import { userLogin } from "./data/action";
 
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      snackBarMessage: '',
+      snackBarOpen: false,
       data: {
         email: "",
         password: ""
@@ -17,12 +21,31 @@ class LoginComponent extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
+    this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    if (nextProps && nextProps.loginData && nextProps.loginData !== this.props.loginData) {
+      localStorage.setItem('token', nextProps.loginData.token);
+      this.setState({
+        ...this.state,
+        snackBarMessage: 'Login Success',
+        snackBarOpen: true,
+      })
+    }
+  }
+
+  handleCloseSnackbar() {
+    this.setState({
+      ...this.state,
+      snackBarMessage: '',
+      snackBarOpen: false,
+    }, () => {
+      this.props.history.push("/tickets");
+    })
   }
 
   inputChange(ev, type) {
@@ -35,8 +58,15 @@ class LoginComponent extends Component {
     });
   }
 
-  formSubmit() {
-    this.props.history.push("/tickets");
+  formSubmit(ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+    const { email, password } = this.state.data;
+    const data = {
+      email,
+	    password
+    }
+    this.props.userLogin(data);
   }
 
   render() {
@@ -73,6 +103,11 @@ class LoginComponent extends Component {
             </div>
           </form>
         </div>
+        <SnackBar
+          open={this.state.snackBarOpen}
+          message={this.state.snackBarMessage}
+          handleCloseSnackbar={this.handleCloseSnackbar}
+        />
       </section>
     );
   }
@@ -87,7 +122,7 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = dispatch => {
   return {
     dispatch,
-    ...bindActionCreators({ getData }, dispatch)
+    ...bindActionCreators({ userLogin }, dispatch)
   };
 };
 

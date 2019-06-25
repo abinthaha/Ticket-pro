@@ -2,24 +2,33 @@ import {
     LOGIN
 } from './constant';
 
-const setArticleDetails = (data) => {
-    return {
-        type: LOGIN,
-        data: data
+const userLoginComplete = (data) => {
+    if (data) {
+        return {
+            type: LOGIN,
+            data: data
+        }
     }
 }
 
-export const getData = () => {
+const userLoginError = (data) => {
+    if (data) {
+        return {
+            type: 'API_ERROR',
+            data: data
+        }
+    }
+}
+
+export const userLogin = (data) => {
     return {
         type: 'API',
         payload: {
-            url: "/users",
-            method: "GET",
-            data: null,
-            onSuccess: setArticleDetails,
-            onFailure: () => {
-                console.log("Error occurred loading articles");
-            }
+            url: "/users/login",
+            method: "POST",
+            data: data,
+            onSuccess: userLoginComplete,
+            onFailure: userLoginError
         }
     };
 }

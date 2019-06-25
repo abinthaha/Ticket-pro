@@ -1,0 +1,17 @@
+.snackbar {
+    display: inline-flex;
+    position: fixed;
+    top: -100px;
+    right: 10px;
+    padding: 20px;
+    background-color: #444;
+    color: #fff;
+    box-shadow: -1px 1px 1px 1px #777;
+    border-radius: 5px;
+    min-width: 250px;
+    transition: all 0.7s ease;
+
+    &.open {
+        top: 10px;
+    }
+}

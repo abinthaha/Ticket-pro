@@ -3,11 +3,18 @@
 $primary_hover: #082C65;
 $secondary_hover: #cbced2;
 
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .btn {
     cursor: pointer;
     display: inline-block;
     border-color: transparent;
     transition: all 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 5px;
 
     &:hover,
     &:focus,
