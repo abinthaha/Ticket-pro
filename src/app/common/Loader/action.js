@@ -2,7 +2,7 @@ export const initialState = {
     isLoading: false,
 }
 
-const LoaderReducer = (state = initialState, action) => {
+const loaderReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'API_START':
             return {
@@ -21,4 +21,4 @@ const LoaderReducer = (state = initialState, action) => {
     }
 }
 
-export default LoaderReducer;
+export default loaderReducer;

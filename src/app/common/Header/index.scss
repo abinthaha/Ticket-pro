@@ -1,0 +1,15 @@
+.header-wrapper {
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+
+    h2 {
+        flex: 1;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+
+    .create-ticket-btn {
+        text-decoration: none;
+    }
+}

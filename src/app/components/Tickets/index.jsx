@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+import { setUserData } from './data/action';
+
+import HeaderComponent from '../../common/Header';
+
 import "./styles/styles.scss";
+
+var jwtDecode = require("jwt-decode");
 
 class TicketsComponent extends Component {
   constructor(props) {
@@ -11,9 +17,12 @@ class TicketsComponent extends Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      this.props.history.push('/login');
+      this.props.history.push("/login");
+    } else {
+      var decoded = jwtDecode(token);
+      this.props.setUserData(decoded);
     }
   }
 
@@ -21,28 +30,26 @@ class TicketsComponent extends Component {
     console.log(nextProps);
   }
 
-  createTicket() {
-    this.props.history.push('/create-ticket');
-  }
-
   render() {
     return (
       <section className="tickets-wrapper container">
-        <div>Tickets</div>
-        <button className='btn primary-btn' onClick={ev => this.createTicket()}>Add new</button>
+        <HeaderComponent userData={this.props.userData} />
+        <h2>Tickets</h2>
       </section>
     );
   }
 }
 
 const mapStateToProps = function(state) {
-  return {};
+  return {
+    userData: state.ticketReducer.userData
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     dispatch,
-    ...bindActionCreators({}, dispatch)
+    ...bindActionCreators({setUserData}, dispatch)
   };
 };
 

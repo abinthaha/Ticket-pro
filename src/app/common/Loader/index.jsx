@@ -29,7 +29,7 @@ class LoaderComponent extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.LoaderReducer.isLoading
+    isLoading: state.loaderReducer.isLoading
   };
 };
 
