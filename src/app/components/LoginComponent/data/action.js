@@ -28,6 +28,7 @@ export const userLogin = (data) => {
             method: "POST",
             data: data,
             onSuccess: userLoginComplete,
+            label: true,
             onFailure: userLoginError
         }
     };

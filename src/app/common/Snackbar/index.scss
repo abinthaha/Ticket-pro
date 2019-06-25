@@ -1,17 +1,58 @@
+@import '../../../assets/scss/variables';
+
 .snackbar {
     display: inline-flex;
     position: fixed;
     top: -100px;
     right: 10px;
     padding: 20px;
-    background-color: #444;
-    color: #fff;
-    box-shadow: -1px 1px 1px 1px #777;
+    background-color: $black4;
+    color: $white;
+    box-shadow: -1px 1px 1px 1px $grey;
     border-radius: 5px;
     min-width: 250px;
     transition: all 0.7s ease;
+    font-size: $small;
 
     &.open {
         top: 10px;
+    }
+
+    .message {
+        flex: 1;
+        max-width: 90%;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        width: 18px;
+        height: 18px;
+        opacity: 0.8;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &:before,
+        &:after {
+            position: absolute;
+            left: 8px;
+            content: ' ';
+            height: 20px;
+            width: 2px;
+            background-color: $off_white;
+            transition: all 0.3s ease;
+        }
+
+        &:before {
+            transform: rotate(45deg);
+        }
+
+        &:after {
+            transform: rotate(-45deg);
+        }
     }
 }

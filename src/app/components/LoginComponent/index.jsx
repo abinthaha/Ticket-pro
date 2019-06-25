@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import SnackBar from '../../common/Snackbar';
+import { openSnackBar } from '../../common/Snackbar/action';
 
 import "./styles/styles.scss";
 
@@ -21,31 +21,20 @@ class LoginComponent extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
-    this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.loginData && nextProps.loginData !== this.props.loginData) {
       localStorage.setItem('token', nextProps.loginData.token);
-      this.setState({
-        ...this.state,
-        snackBarMessage: 'Login Success',
-        snackBarOpen: true,
-      })
+      this.props.openSnackBar('Login Success');
+      if (!nextProps.loginError  && nextProps.loginData && nextProps.loginData.token) {
+        this.props.history.push("/tickets");
+      }
+    } else if (nextProps && nextProps.loginError && nextProps.loginError !== this.props.loginError) {
+      this.props.openSnackBar(nextProps.loginError.data);
     }
-  }
-
-  handleCloseSnackbar() {
-    this.setState({
-      ...this.state,
-      snackBarMessage: '',
-      snackBarOpen: false,
-    }, () => {
-      this.props.history.push("/tickets");
-    })
   }
 
   inputChange(ev, type) {
@@ -103,11 +92,6 @@ class LoginComponent extends Component {
             </div>
           </form>
         </div>
-        <SnackBar
-          open={this.state.snackBarOpen}
-          message={this.state.snackBarMessage}
-          handleCloseSnackbar={this.handleCloseSnackbar}
-        />
       </section>
     );
   }
@@ -115,14 +99,15 @@ class LoginComponent extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    loginData: state.loginReducer.loginData
+    loginData: state.loginReducer.loginData,
+    loginError: state.loginReducer.loginError
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     dispatch,
-    ...bindActionCreators({ userLogin }, dispatch)
+    ...bindActionCreators({ userLogin, openSnackBar }, dispatch)
   };
 };
 

@@ -7,10 +7,13 @@ import * as serviceWorker from './serviceWorker';
 import store from './store/index';
 import './index.scss';
 
-import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import LoginComponent from './app/components/LoginComponent';
 import TicketsComponent from './app/components/Tickets';
 import CreateTicketComponent from './app/components/CreateTicket';
+
+import SnackBar from './app/common/Snackbar/index';
+import LoaderComponent from './app/common/Loader/index';
 
 const routing = (
     <Router>
@@ -23,7 +26,9 @@ const routing = (
 
 ReactDOM.render(
     <Provider store={store}>
+        <LoaderComponent />
         {routing}
+        <SnackBar />
     </Provider>,
     document.getElementById('root')
 );

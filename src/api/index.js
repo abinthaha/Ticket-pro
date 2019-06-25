@@ -59,8 +59,8 @@ const apiMiddleware = ({
             dispatch(onSuccess(data));
         })
         .catch(error => {
-            dispatch(apiError(error));
-            // dispatch(onFailure(error));ss
+            dispatch(apiError(error.response));
+            dispatch(onFailure(error.response));
 
             if (error.response && error.response.status === 403) {
                 dispatch(accessDenied(window.location.pathname));

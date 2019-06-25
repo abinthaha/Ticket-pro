@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 
 import './index.scss';
 
@@ -6,22 +7,25 @@ class SnackBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            action: true
         }
 
         this.closeSnackBar = this.closeSnackBar.bind(this);
-        this.setPropstoState = this.setPropstoState.bind(this);
+        this.setPropsToState = this.setPropsToState.bind(this);
+        this.closeSnackBar = this.closeSnackBar.bind(this);
+        
     }
 
     componentDidMount() {
-        this.setPropstoState(this.props);
+        this.setPropsToState(this.props);
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setPropstoState(nextProps)
+        this.setPropsToState(nextProps)
     }
 
-    setPropstoState(props) {
+    setPropsToState(props) {
         const { open } = props;
         if (open) {
             this.setState({
@@ -39,18 +43,34 @@ class SnackBar extends Component {
         this.setState({
             ...this.state,
             open: false
-        }, () => {
-            this.props.handleCloseSnackbar();
         })
     }
 
     render () {
         return (
             <span className={'snackbar ' + (this.state.open ? 'open' : '')}>
-                <span className='message'>{this.props.message}</span>
+                <span className='message'>{this.props.message ? this.props.message : 'Snackbar' }</span>
+                {
+                    this.state.action ?
+                    (
+                        <span className='close-btn' onClick={ev => this.closeSnackBar()}></span>
+                    ) : ''
+                }
             </span>
         )
     }
 }
 
-export default SnackBar;
+const mapStateToProps = (state) => {
+    return {
+        open: state.snackBarReducer.snackBarOpen,
+        message: state.snackBarReducer.snackBarData
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+    }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (SnackBar)

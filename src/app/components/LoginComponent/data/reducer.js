@@ -3,7 +3,8 @@ import {
 } from './constant';
 
 const defaultState = {
-    loginData: [],
+    loginData: {},
+    loginError: null
 };
 
 const loginReducer = (state = defaultState, action) => {
@@ -17,6 +18,7 @@ const loginReducer = (state = defaultState, action) => {
         case LOGIN:
             return {
                 ...state,
+                loginError: null,
                 loginData: data
             }
 
