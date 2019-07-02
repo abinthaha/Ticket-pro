@@ -1,6 +1,6 @@
 @import './assets/scss/index.scss';
 
-$primary_hover: #082C65;
+$primary_hover: #d4c00d;
 $secondary_hover: #cbced2;
 
 .container {
@@ -13,22 +13,25 @@ $secondary_hover: #cbced2;
     display: inline-block;
     border-color: transparent;
     transition: all 0.3s ease;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 2px;
+    display: inline-flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
 
-    &:hover,
-    &:focus,
-    &:active {
-        box-shadow: 0px 0px 5px 1px $grey;
+    &:hover {
+        outline: none;
+        box-shadow: 1px 1px 2px 1px $off_white;
     }
 
     &.primary-btn {
         background-color: $primary_color;
-        color: $white;
+        color: $black;
 
-        &:hover,
-        &:focus,
-        &:active {
+        &:hover {
             background-color: $primary_hover;
         }
     }
@@ -37,10 +40,13 @@ $secondary_hover: #cbced2;
         background-color: $secondary_bg_color;
         color: $secondary_color;
 
-        &:hover,
-        &:focus,
-        &:active {
+        &:hover {
             background-color: $secondary_hover;
         }
+    }
+
+    &:disabled {
+        background-color: $white2;
+        pointer-events: none;
     }
 }

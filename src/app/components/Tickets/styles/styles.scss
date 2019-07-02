@@ -1,0 +1,68 @@
+@import '../../../../assets/scss/variables';
+
+.ticket-table {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr {
+        &:not(.filter-row) {
+
+            td,
+            th {
+                text-align: left;
+                border: 1px solid $off_white;
+            }
+
+            .edit-icon-cell {
+                text-align: center;
+            }
+        }
+
+        &.filter-row {
+            th {
+                padding: 10px 5px;
+            }
+        }
+
+        &.table-header {
+            background-color: $black4;
+            color: $white;
+
+            td,
+            th {
+                border: 1px solid $grey;
+            }
+        }
+    }
+
+    td,
+    th {
+        text-align: left;
+        padding: 15px 10px;
+    }
+
+
+
+    input,
+    select {
+        padding: 10px;
+        border: 1px solid $off_white;
+        border-radius: 5px;
+        outline: none;
+    }
+}
+
+.no-ticket-error {
+    margin: 100px 0;
+    text-align: center;
+}
+
+.edit-icon {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-image: url('../../../../assets/image/pencil_icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

@@ -1,7 +1,11 @@
+@import '../../../assets/scss/variables';
+
 .header-wrapper {
     display: flex;
-    padding: 20px 0;
+    padding: 20px 10%;
     align-items: center;
+    background-color: $black2;
+    color: $white;
 
     h2 {
         flex: 1;
@@ -9,7 +13,16 @@
         font-weight: bold;
     }
 
-    .create-ticket-btn {
+    .btn {
+        margin: 0 5px;
         text-decoration: none;
+
+        &:hover {
+            box-shadow: none;
+        }
+
+        &.create-ticket-btn {
+            width: 130px;
+        }
     }
 }

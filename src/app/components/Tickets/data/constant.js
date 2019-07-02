@@ -1,1 +1,2 @@
-export const SET_USER_DATA = 'SET_USER_DATA';
+export const FETCH_TICKET_DETAILS = 'FETCH_TICKET_DETAILS';
+export const GET_TICKETS = 'GET_TICKETS';

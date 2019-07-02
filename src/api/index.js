@@ -16,8 +16,6 @@ const apiMiddleware = ({
 }) => next => action => {
     next(action);
 
-    console.log(action);
-
     if (!action || action.type !== API) return;
 
     const {
@@ -36,11 +34,12 @@ const apiMiddleware = ({
 
     // axios default configs
 
-    const userToken = accessToken ? localStorage.getItem('token') : '';
+    let userToken = accessToken ? localStorage.getItem('token') : '';
+    userToken = userToken.split(' ')[1];
 
     axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "";
     axios.defaults.headers.common["Content-Type"] = "application/json";
-    axios.defaults.headers.common["Authorization"] = `Bearer${userToken}`;
+    axios.defaults.headers.common["Authorization"] = `${userToken}`;
 
 
     if (label) {

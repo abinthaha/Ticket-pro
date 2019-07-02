@@ -1,13 +1,17 @@
 // Colors
 
-$primary_color: #155CB4;
-$secondary_bg_color: #f1f2f4;
+$primary_color: #ffe600;
+$secondary_bg_color: #e4e4e4;
 $secondary_color: #42526e;
+
 $white: #fff;
 $off_white: #ddd;
+$white2: #bbb;
+$grey: #777;
+$comment_bg: #dcdcdc;
 $black: #000;
 $black4: #444;
-$grey: #777;
+$black2: #2e2e38;
 
 
 // Font size
@@ -21,3 +25,4 @@ $small: 1rem;
 $mobile: "(min-width: 320px) and (max-width: 767px)";
 $tablet: "(min-width: 768px) and (max-width: 1023px)";
 $below-desktop: "(max-width: 768px)";
+$desktop: "(min-width: 1024px)";
