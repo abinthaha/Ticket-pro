@@ -1,6 +1,15 @@
 import {
-    LOGIN
+    LOGIN,
+    LOGOUT
 } from './constant';
+
+export const userLogout = () => {
+    localStorage.clear();
+    window.location.pathname = '/';
+    return {
+        type: LOGOUT
+    }
+}
 
 const userLoginComplete = (data) => {
     if (data) {

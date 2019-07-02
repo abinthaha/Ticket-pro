@@ -1,0 +1,31 @@
+@import '../../../../assets/scss/variables';
+
+.create-ticket-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @media #{$desktop} {
+        padding: 60px 20px 20px;
+        flex-direction: row;
+    }
+
+    .comments-wrapper,
+    .create-form-container {
+        flex: 1;
+    }
+
+    .comments-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid $off_white;
+
+        @media #{$desktop} {
+            justify-content: flex-end;
+            margin-left: 30px;
+            padding-left: 30px;
+            border-top: 0px;
+        }
+    }
+}

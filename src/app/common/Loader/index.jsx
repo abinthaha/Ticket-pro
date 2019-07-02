@@ -11,7 +11,7 @@ class LoaderComponent extends Component {
 
   render() {
     return this.props.isLoading ? (
-      <div class="loader-wrapper">
+      <div className="loader-wrapper">
         <span />
         <span />
         <span />
