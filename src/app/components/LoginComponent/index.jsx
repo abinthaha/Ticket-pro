@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router";
 
-import { openSnackBar } from '../../common/Snackbar/action';
+import { openSnackBar } from "../../common/Snackbar/action";
 
 import "./styles/styles.scss";
 
@@ -12,7 +13,7 @@ class LoginComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      snackBarMessage: '',
+      snackBarMessage: "",
       snackBarOpen: false,
       data: {
         email: "",
@@ -26,13 +27,25 @@ class LoginComponent extends Component {
   componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps && nextProps.loginData && nextProps.loginData !== this.props.loginData) {
-      localStorage.setItem('token', nextProps.loginData.token);
-      this.props.openSnackBar('Login Success');
-      if (!nextProps.loginError  && nextProps.loginData && nextProps.loginData.token) {
+    if (
+      nextProps &&
+      nextProps.loginData &&
+      nextProps.loginData !== this.props.loginData
+    ) {
+      localStorage.setItem("token", nextProps.loginData.token);
+      this.props.openSnackBar("Login Success");
+      if (
+        !nextProps.loginError &&
+        nextProps.loginData &&
+        nextProps.loginData.token
+      ) {
         this.props.history.push("/tickets");
       }
-    } else if (nextProps && nextProps.loginError && nextProps.loginError !== this.props.loginError) {
+    } else if (
+      nextProps &&
+      nextProps.loginError &&
+      nextProps.loginError !== this.props.loginError
+    ) {
       this.props.openSnackBar(nextProps.loginError.data);
     }
   }
@@ -53,9 +66,13 @@ class LoginComponent extends Component {
     const { email, password } = this.state.data;
     const data = {
       email,
-	    password
-    }
+      password
+    };
     this.props.userLogin(data);
+  }
+
+  gotoSignUp() {
+    this.props.history.push('/sign-up')
   }
 
   render() {
@@ -87,8 +104,17 @@ class LoginComponent extends Component {
               />
             </div>
             <div className="login-row">
-              <input type="submit" className="submit-button btn primary-btn" value="Login" />
-              <input type="button" className="sign-up-btn btn secondary-btn" value="Signup" />
+              <input
+                type="submit"
+                className="submit-button btn primary-btn"
+                value="Login"
+              />
+              <input
+                type="button"
+                className="sign-up-btn btn secondary-btn"
+                value="Signup"
+                onClick={ev => this.gotoSignUp()}
+              />
             </div>
           </form>
         </div>
@@ -111,7 +137,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginComponent);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(LoginComponent)
+);

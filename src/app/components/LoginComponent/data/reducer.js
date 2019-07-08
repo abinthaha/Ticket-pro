@@ -1,5 +1,6 @@
 import {
     LOGIN,
+    SIGN_UP,
     LOGOUT
 } from './constant';
 
@@ -22,7 +23,12 @@ const loginReducer = (state = defaultState, action) => {
                 loginError: null,
                 loginData: data
             }
-
+        case SIGN_UP:
+            return {
+                ...state,
+                signUpError: null,
+                signUpData: data
+            }
         case LOGOUT:
             return {
                 ...state,
@@ -34,6 +40,12 @@ const loginReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 loginError: data
+            }
+            
+        case 'SIGN_UP_ERROR':
+            return {
+                ...state,
+                signUpError: data
             }
         default:
             return state;

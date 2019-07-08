@@ -9,6 +9,7 @@ import './index.scss';
 
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import LoginComponent from './app/components/LoginComponent';
+import SignUpComponent from './app/components/LoginComponent/SignUpComponent';
 import TicketsComponent from './app/components/Tickets';
 import CreateTicketComponent from './app/components/CreateTicket';
 
@@ -38,6 +39,7 @@ const routing = (
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/login" component={LoginComponent} />
+        <Route path="/sign-up" component={SignUpComponent} />
         {routes}
         <Route component={PageNotFoundComponent} />
       </Switch>

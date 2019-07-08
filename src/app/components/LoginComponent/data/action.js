@@ -1,5 +1,6 @@
 import {
     LOGIN,
+    SIGN_UP,
     LOGOUT
 } from './constant';
 
@@ -27,6 +28,38 @@ const userLoginError = (data) => {
             data: data
         }
     }
+}
+
+const userSignUpComplete = (data) => {
+    if (data) {
+        return {
+            type: SIGN_UP,
+            data: data
+        }
+    }
+}
+
+const userSignUpError = (data) => {
+    if (data) {
+        return {
+            type: 'SIGN_UP_ERROR',
+            data: data
+        }
+    }
+}
+
+export const userSignUp = (data) => {
+    return {
+        type: 'API',
+        payload: {
+            url: "/users/register",
+            method: "POST",
+            data: data,
+            onSuccess: userSignUpComplete,
+            label: true,
+            onFailure: userSignUpError
+        }
+    };
 }
 
 export const userLogin = (data) => {
